@@ -32,10 +32,14 @@ In order to get started with this project there are few things we need to keep i
 
 # Project Requirements
 
-This is a list of project requirements that we will fill together in lession1.
+## Goal
+To see whether 3D bar charts are an effective means of visualising data.
 
 
-_To be determined_
-- [ ] First requirement
-- [ ] First requirement
-- [ ] First requirement
+- [ ] Create 2D and 3D bar charts 
+- [ ] Create questions for the survey 
+- [ ] Add a timer 
+- [ ] Collect and store the data
+- [ ] Randomly display bar charts to different participants
+- [ ] T Test against the data
+- [ ] Mann Whitney test against data
