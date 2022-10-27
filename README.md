@@ -40,7 +40,7 @@ To see whether 3D bar charts are an effective means of visualising data.
 
 
 - [x] Create 2D and 3D bar charts 
-- [ ] Randomly display a bar chart
+- [x] Randomly display a bar chart
 - [ ] Create questions for the survey 
 - [ ] Add a timer 
 - [ ] Collect and store the data
