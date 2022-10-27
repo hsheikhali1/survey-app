@@ -32,11 +32,15 @@ In order to get started with this project there are few things we need to keep i
 
 # Project Requirements
 
+1. Basic subtraction/addition question
+2. How fast they can answer the question
+
 ## Goal
 To see whether 3D bar charts are an effective means of visualising data.
 
 
-- [ ] Create 2D and 3D bar charts 
+- [x] Create 2D and 3D bar charts 
+- [ ] Randomly display a bar chart
 - [ ] Create questions for the survey 
 - [ ] Add a timer 
 - [ ] Collect and store the data

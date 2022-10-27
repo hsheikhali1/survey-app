@@ -11,7 +11,9 @@
 <style>
 	.image-divider {
 		display: flex;
+		flex-direction: column;
 		width: 450px;
+		margin-bottom: 2rem;
 	}
 
 	img {
@@ -38,16 +40,21 @@
 	</ol>
 </div>
 
-<div class="image-divider">
-	<img src="graph1.png" alt="graph1">
-	<img src="graph2.png" alt="graph2">
-	<img src="graph3.png" alt="graph3">
-	<img src="graph4.png" alt="graph4">
-	<img src="graph5.png" alt="graph5">
-	<img src="graph6.png" alt="graph6">
-	<img src="graph7.png" alt="graph7">
-	<img src="graph8.png" alt="graph8">
-	<img src="graph9.png" alt="graph9">
-	<img src="graph10.png" alt="graph10">
-</div>
+<div class="survey">
+	<div class="image-divider">
+		<img src="<%=twoDGraph.graph%>" alt="graph1">
+		<% for (let i = 0; i < twoDGraph.questions.length; i++) {%>
+			<label><%=twoDGraph.questions[i]%>:</label>
+			<input placeholder="answer here" />
+		<% } %>
+	</div>
 
+	<div class="image-divider">
+		<img src="<%=threeDGraph.graph%>" alt="graph2">
+		<% for (let i = 0; i < threeDGraph.questions.length; i++) {%>
+			<label><%=threeDGraph.questions[i]%>:</label>
+			<input placeholder="answer here" />
+		<% } %>
+	</div>
+	<button id="submit-graph2">Submit</button>
+</div>
