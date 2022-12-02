@@ -12,10 +12,13 @@
 	.image-divider {
 		display: flex;
 		flex-direction: column;
-		width: 450px;
+		width: 1188px;
 		margin-bottom: 2rem;
 	}
 
+	input {
+		padding: 1rem;
+	}
 	img {
 		width: 100%;
 	}
@@ -38,23 +41,60 @@
 		<li>Do this thing</li>
 		<li>Do this other thing</li>
 	</ol>
+
+	<input id="user-name" placeholder="please provide your username" />
 </div>
 
 <div class="survey">
 	<div class="image-divider">
-		<img src="<%=twoDGraph.graph%>" alt="graph1">
-		<% for (let i = 0; i < twoDGraph.questions.length; i++) {%>
-			<label><%=twoDGraph.questions[i]%>:</label>
-			<input placeholder="answer here" />
+		<img id="graph-img" data-graph-type="<%=graphs.typeOfGraph%>" data-graph-id="<%=graphs.graphId%>" src="<%=graphs.graph%>" alt="graph1">
+		<% for (let i = 0; i < graphs.questions.length; i++) {%>
+			<label>
+				<h2><%=graphs.questions[i].question%>:</h2>
+			</label>
+			<input id="<%=graphs.questions[i].id%>" placeholder="answer here" />
 		<% } %>
 	</div>
 
-	<div class="image-divider">
-		<img src="<%=threeDGraph.graph%>" alt="graph2">
-		<% for (let i = 0; i < threeDGraph.questions.length; i++) {%>
-			<label><%=threeDGraph.questions[i]%>:</label>
-			<input placeholder="answer here" />
-		<% } %>
-	</div>
 	<button id="submit-graph2">Submit</button>
 </div>
+
+<script>
+	const timerStoppedEvent = new Event("timer-stopped");
+
+	let timerStarted = true;
+	const timeStart = performance.now();
+
+	const submitButtom = document.querySelector("#submit-graph2");
+	const graph = document.querySelector("#graph-img");
+	const graphType = graph.getAttribute("data-graph-type");
+	const graphId = graph.getAttribute("data-graph-id");
+	const questionOne = document.querySelector("#question1");
+	const questionTwo = document.querySelector("#question2");
+	const userName = document.querySelector("#user-name");
+
+	submitButtom.addEventListener("click", (e) => {
+		e.preventDefault();
+		const timeEnd = performance.now();
+		const timeToReadGraph = timeEnd - timeStart;
+		timerStarted = false;
+
+		const dataSet = {
+			name: userName.value,
+			timeForCompletion: timeToReadGraph,
+			id: graphId,
+			type: graphType,
+			question1: `${questionOne.value}%`,
+			question2: `${questionTwo.value}%`,
+		}
+
+		fetch("http://localhost:3000/post-results", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(dataSet),
+		});
+	});
+
+</script>
