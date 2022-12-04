@@ -126,7 +126,7 @@ app.get("/get-results", async function(request, response) {
   return response.send(await db.from('survey').select());
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log(
     "we're off to the races!",
     "We are live on http://localhost:3000/"
