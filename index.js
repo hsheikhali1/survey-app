@@ -101,6 +101,7 @@ app.get("/silvia", function (_, response) {
 });
 
 app.post("/post-results", function (request, response) {
+  // connect to database
   console.log(request.body);
   return response.send("MAKING POST REQUESTS");
 });
