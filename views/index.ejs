@@ -82,10 +82,10 @@
 		const dataSet = {
 			name: userName.value,
 			timeForCompletion: timeToReadGraph,
-			id: graphId,
+			graphId,
 			type: graphType,
-			question1: `${questionOne.value}%`,
-			question2: `${questionTwo.value}%`,
+			questionOne: `${questionOne.value}%`,
+			questionTwo: `${questionTwo.value}%`,
 		}
 
 		fetch("http://localhost:3000/post-results", {

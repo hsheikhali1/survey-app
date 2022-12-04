@@ -1,4 +1,9 @@
 const express = require("express");
+const { createClient } = require("@supabase/supabase-js");
+const uuid = require("uuid");
+
+require("dotenv").config();
+
 const logger = require("./logger");
 
 const app = express();
@@ -7,6 +12,10 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 app.use(express.static("pictures"));
 app.use(express.json());
+
+const supabaseKey = process.env.SUPABASE_KEY;
+
+const db = createClient("https://vaqjvzpyoyveukinynym.supabase.co", supabaseKey);
 
 // write a function that randomly generates or reads an image
 // then displays that image to the browser
@@ -100,10 +109,21 @@ app.get("/silvia", function (_, response) {
   return response.send("Hello Silvia!");
 });
 
-app.post("/post-results", function (request, response) {
+app.post("/post-results", async function (request, response) {
   // connect to database
-  console.log(request.body);
-  return response.send("MAKING POST REQUESTS");
+  const { error, data } = await db.from('survey').insert({ id: uuid.v4(), ...request.body });
+
+  if (error) {
+    response.status(400);
+    console.log(error)
+    return response.send({ error, status: 400 });
+  }
+
+  return response.send(data);
+});
+
+app.get("/get-results", async function(request, response) {
+  return response.send(await db.from('survey').select());
 });
 
 app.listen(3000, () => {
