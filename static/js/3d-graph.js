@@ -30,7 +30,7 @@ submitButton.addEventListener("click", (e) => {
   const timeEnd = performance.now();
   const timeToReadGraph = timeEnd - timeStart;
   const dataSet = {
-    name: userName.value,
+    name: localStorage.getItem("username"),
     timeForCompletion: timeToReadGraph,
     graphId,
     type: graphType,
