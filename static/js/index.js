@@ -31,6 +31,8 @@ submitUsername.addEventListener("click", () => {
     errorSpan.classList.remove("hidden");
     errorSpan.classList.add("block");
     errorSpan.classList.add("text-red-300");
+
+    return;
   }
 
   if (getField("username") !== "" || getField("username") !== undefined) {
