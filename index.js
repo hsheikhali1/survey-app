@@ -10,7 +10,9 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
+app.set("static", "./static");
 app.use(express.static("pictures"));
+app.use(express.static("static"));
 app.use(express.json());
 
 const supabaseKey = process.env.SUPABASE_KEY;
@@ -50,31 +52,31 @@ app.get("/", function (request, response) {
     {
       graph: "graph1.png",
       questions,
-      typeOfGraph: "3D",
+      typeOfGraph: "2D",
       graphId: "graph1",
     },
     {
       graph: "graph2.png",
       questions,
-      typeOfGraph: "3D",
+      typeOfGraph: "2D",
       graphId: "graph2",
     },
     {
       graph: "graph3.png",
       questions,
-      typeOfGraph: "3D",
+      typeOfGraph: "2D",
       graphId: "graph3",
     },
     {
       graph: "graph4.png",
       questions,
-      typeOfGraph: "3D",
+      typeOfGraph: "2D",
       graphId: "graph4",
     },
     {
       graph: "graph5.png",
       questions,
-      typeOfGraph: "3D",
+      typeOfGraph: "2D",
       graphId: "graph5",
     },
     { graph: "graph6.png", questions, typeOfGraph: "2D", graphId: "graph6" },
@@ -91,6 +93,106 @@ app.get("/", function (request, response) {
   const randomGraph = Math.floor(Math.random() * listOfGraphs.length);
 
   response.render("index", {
+    graphs: {
+      graph: listOfGraphs[randomGraph].graph,
+      questions: listOfGraphs[randomGraph].questions,
+      typeOfGraph: listOfGraphs[randomGraph].typeOfGraph,
+      graphId: listOfGraphs[randomGraph].graphId,
+    },
+  });
+});
+
+app.get("/2d-graph", (_, response) => {
+  // example logic for randomly selecting from a list
+  /*
+   */
+  const questions = [
+    {
+      id: "question1",
+      question: "What percentage of cold drinks consumed in Autumn",
+    },
+    {
+      id: "question2",
+      question:
+        "What was the precentage increase of hot drinks consumed from summer to winter",
+    },
+  ];
+  const listOfGraphs = [
+    {
+      graph: "graph1.png",
+      questions,
+      typeOfGraph: "2D",
+      graphId: "graph1",
+    },
+    {
+      graph: "graph2.png",
+      questions,
+      typeOfGraph: "2D",
+      graphId: "graph2",
+    },
+    {
+      graph: "graph3.png",
+      questions,
+      typeOfGraph: "2D",
+      graphId: "graph3",
+    },
+    {
+      graph: "graph4.png",
+      questions,
+      typeOfGraph: "2D",
+      graphId: "graph4",
+    },
+    {
+      graph: "graph5.png",
+      questions,
+      typeOfGraph: "2D",
+      graphId: "graph5",
+    },
+  ];
+
+  const randomGraph = Math.floor(Math.random() * listOfGraphs.length);
+
+  response.render("2d-graph", {
+    graphs: {
+      graph: listOfGraphs[randomGraph].graph,
+      questions: listOfGraphs[randomGraph].questions,
+      typeOfGraph: listOfGraphs[randomGraph].typeOfGraph,
+      graphId: listOfGraphs[randomGraph].graphId,
+    },
+  });
+});
+
+app.get("/3d-graph", (_, response) => {
+  // example logic for randomly selecting from a list
+  /*
+   */
+  const questions = [
+    {
+      id: "question1",
+      question: "What percentage of cold drinks consumed in Autumn",
+    },
+    {
+      id: "question2",
+      question:
+        "What was the precentage increase of hot drinks consumed from summer to winter",
+    },
+  ];
+  const listOfGraphs = [
+    { graph: "graph6.png", questions, typeOfGraph: "3D", graphId: "graph6" },
+    { graph: "graph7.png", questions, typeOfGraph: "3D", graphId: "graph7" },
+    { graph: "graph8.png", questions, typeOfGraph: "3D", graphId: "graph8" },
+    { graph: "graph9.png", questions, typeOfGraph: "3D", graphId: "graph9" },
+    {
+      graph: "graph10.png",
+      questions,
+      typeOfGraph: "3D",
+      graphId: "graph10",
+    },
+  ];
+
+  const randomGraph = Math.floor(Math.random() * listOfGraphs.length);
+
+  response.render("3d-graph", {
     graphs: {
       graph: listOfGraphs[randomGraph].graph,
       questions: listOfGraphs[randomGraph].questions,
