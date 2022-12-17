@@ -14,14 +14,18 @@ const usernameSpan = document.querySelector("#username");
 const userName = localStorage.getItem("username");
 usernameSpan.innerText += ` ${userName}`;
 
-function submitFields(fields) {
-  fetch("https://survey-app-production.up.railway.app/post-results", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(fields),
-  });
+async function submitFields(fields) {
+  try {
+    await fetch("https://survey-app-production.up.railway.app/post-results", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(fields),
+    });
+  } catch (err) {
+    return err;
+  }
 }
 
 
@@ -37,5 +41,5 @@ submitButton.addEventListener("click", (e) => {
     questionOne: `${questionOne.value}%`,
     questionTwo: `${questionTwo.value}%`,
   };
-  submitFields(dataSet);
+  submitFields(dataSet).then(() => window.location.href = "/thank-you");
 });
