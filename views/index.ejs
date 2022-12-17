@@ -1,110 +1,101 @@
-<!--
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Document</title>
+    </head>
+    <body>
+		<style>
+		 input {
+			 padding: 1rem;
+		 }
 
-1. give the home page a good heading
-- 
+		 img {
+			 width: 100%;
+		 }
+		 button {
+			 border: none;
+			 padding: 1rem;
+			 border-radius: 3px;
+			 max-width: 30%;
+			 cursor: pointer;
+		 }
+
+			#user-name {
+				margin-top: 1.50rem;
+				margin-bottom: 1.50rem;
+			}
+
+		 .container {
+			 padding-left: 2rem;
+			 padding-right: 2rem;
+			 max-width: 1188px;
+		 }
+
+		 #error-display {
+			 margin-bottom: 1rem;
+		 }
+
+		 .flex {
+			 display: flex;
+		 }
+
+		 .flex-col {
+			 flex-direction: column;
+		 }
+
+		 .flex-row {
+			 flex-direction: row;
+		 }
+
+		 .justify-center {
+			 justify-content: center;
+		 }
+		 .hidden {
+			 display: none;
+		 }
+
+		 .block {
+			 display: block;
+		 }
+
+		 .text-red-300 {
+			 color: red;
+		 }
+		</style>
 
 
--->
+		<!--
+			1. Add a meaningful heading
+			2. Explain the purpose of this experiment
+			3. Instructions
+		-->
+		<div class="container">
+			<div class="flex flex-col justify-center">
+				<!-- Add a heading -->
+				<h2>Comparing the Effectivness of 2D and 3D Bar Charts</h2>
+				<!-- Add a meaningful explanation -->
+				<h4>How does this survay work?</h4>
+				<p>
+					You will be shown a random bar chart from a selection of multiple different 2D and 3D bar graphs.
+					You will be asked to answer a mathematical question relating to this graph. Please answer the question according to
+					you graph to the best of your ability. The purpose of this study is to test your speed and accuracy.
+				</p>
 
-<!-- main section my page -->
+				<h4>How to submit your answers</h4>
+				<p>Look at the graph below and answer the following questions. Once you are confident with your answer, please press
+					submit.</p>
 
-<style>
-	.image-divider {
-		display: flex;
-		flex-direction: column;
-		width: 1188px;
-		margin-bottom: 2rem;
-	}
+				<p>Before you begin please make sure to create a unique id and enter this below. This should be the first two letters
+					of your first name, your year of birth, and the last two letters of your last name.</p>
+				<p>Eg. if your name is John Smith and you were born in 1995, your unique id would be jo1995th</p>
 
-	input {
-		padding: 1rem;
-	}
-	img {
-		width: 100%;
-	}
+				<input id="user-name" placeholder="please provide your username" />
+				<span id="error-display" class="hidden"></span>
+				<button id="submit-username">Submit</button>
+			</div>
+		</div>
 
-	#user-name {
-		width: 30%;
-		margin-top: 1.50rem;
-		margin-bottom: 1.50rem;
-	}
-</style>
-
-
-<!--
-	1. Add a meaningful heading
-	2. Explain the purpose of this experiment
-	3. Instructions
--->
-<div>
-	<!-- Add a heading -->
-	<h2>Comparing the Effectivness of 2D and 3D Bar Charts</h2>
-	<!-- Add a meaningful explanation -->
-	<h4>How does this survay work?</h4>
-	<p>
-		You will be shown a random bar chart from a selection of multiple different 2D and 3D bar graphs.
-		You will be asked to answer a mathematical question relating to this graph. Please answer the question according to you graph to the best of your ability. The purpose of this study is to test your speed and accuracy.
-	</p>
-
-	<h4>How to submit your answers</h4>
-	<p>Look at the graph below and answer the following questions. Once you are confident with your answer, please press submit.</p>
-
-	<p>Before you begin please make sure to create a unique id and enter this below. This should be the first two letters of your first name, your year of birth, and the last two letters of your last name.</p>
-	<p>Eg. if your name is John Smith and you were born in 1995, your unique id would be jo1995th</p>
-
-	<input id="user-name" placeholder="please provide your username" />
-</div>
-
-<div class="survey">
-	<div class="image-divider">
-		<img id="graph-img" data-graph-type="<%=graphs.typeOfGraph%>" data-graph-id="<%=graphs.graphId%>" src="<%=graphs.graph%>" alt="graph1">
-		<% for (let i = 0; i < graphs.questions.length; i++) {%>
-			<label>
-				<h2><%=graphs.questions[i].question%>:</h2>
-			</label>
-			<input id="<%=graphs.questions[i].id%>" placeholder="answer here" />
-		<% } %>
-	</div>
-
-	<button id="submit-graph2">Submit</button>
-</div>
-
-<script>
-	const timerStoppedEvent = new Event("timer-stopped");
-
-	let timerStarted = true;
-	const timeStart = performance.now();
-
-	const submitButtom = document.querySelector("#submit-graph2");
-	const graph = document.querySelector("#graph-img");
-	const graphType = graph.getAttribute("data-graph-type");
-	const graphId = graph.getAttribute("data-graph-id");
-	const questionOne = document.querySelector("#question1");
-	const questionTwo = document.querySelector("#question2");
-	const userName = document.querySelector("#user-name");
-
-	submitButtom.addEventListener("click", (e) => {
-		e.preventDefault();
-		const timeEnd = performance.now();
-		const timeToReadGraph = timeEnd - timeStart;
-		timerStarted = false;
-
-		const dataSet = {
-			name: userName.value,
-			timeForCompletion: timeToReadGraph,
-			graphId,
-			type: graphType,
-			questionOne: `${questionOne.value}%`,
-			questionTwo: `${questionTwo.value}%`,
-		}
-
-		fetch("https://survey-app-production.up.railway.app/post-results", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(dataSet),
-		});
-	});
-
-</script>
+		<script src="js/index.js"></script>
+    </body>
+</html>

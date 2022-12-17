@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- main section my page -->
+
+    <style>
+      .image-divider {
+        display: flex;
+        flex-direction: column;
+        width: 1188px;
+        margin-bottom: 2rem;
+      }
+
+      input {
+        padding: 1rem;
+      }
+      img {
+        width: 100%;
+      }
+
+      #user-name {
+        width: 30%;
+        margin-top: 1.50rem;
+        margin-bottom: 1.50rem;
+      }
+
+     span {
+       font-size: 1.3rem;
+     }
+    </style>
+
+  </head>
+  <body>
+    <div>
+      <h1>3D Bar Chart</h1>
+      <span id="username">You are completing this survey as:</span>
+    </div>
+
+    <div class="survey">
+      <div class="image-divider">
+        <img id="graph-img" data-graph-type="<%=graphs.typeOfGraph%>" data-graph-id="<%=graphs.graphId%>" src="<%=graphs.graph%>" alt="graph1">
+        <% for (let i = 0; i < graphs.questions.length; i++) {%>
+          <label>
+            <h2><%=graphs.questions[i].question%>:</h2>
+          </label>
+          <input id="<%=graphs.questions[i].id%>" placeholder="answer here" />
+        <% } %>
+      </div>
+
+      <button id="submit">Submit</button>
+    </div>
+
+    <script src="js/3d-graph.js"></script>
+  </body>
+</html>
