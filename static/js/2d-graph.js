@@ -20,16 +20,17 @@ usernameSpan.innerText += ` ${userName}`;
 async function submitFields(fields) {
 
   try {
-    const request = await fetch("https://survey-app-production.up.railway.app/post-results", {
+    await fetch("https://survey-app-production.up.railway.app/post-results", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(fields),
     });
-    const response = request.json();
   } catch (err) {
     console.log("error occured", err);
+
+    return err;
   }
 
 }
@@ -48,6 +49,7 @@ submitAndProceed.addEventListener("click", (e) => {
     questionOne: `${questionOne.value}%`,
     questionTwo: `${questionTwo.value}%`,
   };
-  submitFields(dataSet);
-  window.location.href = "/3d-graph";
+  submitFields(dataSet).then(() => {
+    window.location.href = "/3d-graph";
+  })
 });
