@@ -202,6 +202,10 @@ app.get("/3d-graph", (_, response) => {
   });
 });
 
+app.get('/thank-you', (request, response) => {
+  response.render('thank-you')
+})
+
 app.get("/health", (_, response) => {
   logger.debug("running the logger");
   return response.send({ message: "alive", status: 200 });
