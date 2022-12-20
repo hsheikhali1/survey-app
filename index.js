@@ -272,7 +272,7 @@ app.post("/post-results", async function (request, response) {
 });
 
 app.get("/get-results", async function (request, response) {
-  return response.send(await db.from("survey").select());
+  return response.send(await db.from("survey_prod").select());
 });
 
 app.listen(process.env.PORT, () => {
