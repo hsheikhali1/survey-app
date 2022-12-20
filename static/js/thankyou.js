@@ -39,13 +39,12 @@ submit.addEventListener('click', (e) => {
   }
 
   if ((twoDCheckbox.checked || threeDCheckbox.checked) && justification.value !== '') {
-    console.log(justification.value, addtionalComments.value)
     // add logic to push to database
     submitFields({
       name: localStorage.getItem('username'),
       graph_preference: preference,
-      justification,
-      additional_comments: addtionalComments
+      justification: justification.value,
+      additional_comments: addtionalComments.value
     })
   } else {
     console.error('Please select a graph preference and provide a justification')
