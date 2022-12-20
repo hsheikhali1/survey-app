@@ -20,6 +20,10 @@
            display: flex;
            flex-direction: column;
          }
+
+         .feedback-options {
+           margin-bottom: 1rem;
+         }
         </style>
     </head>
     <body>
@@ -27,21 +31,23 @@
 
         <div class="feedback-questions">
           <h3>Which graph did you find easier to read and why?</h3>
-          <div>
+          <div class="feedback-options">
             <label>2D Graph</label>
-            <input type="radio" />
+            <input id="checkbox-2d" type="checkbox" />
             <label>3D Graph</label>
-            <input type="radio" />
+            <input id="checkbox-3d" type="checkbox" />
           </div>
 
-          <textarea id="feedback"></textarea>
+          <textarea id="justification"></textarea>
         </div>
 
         <div>
           <h3>If you have any other thoughts or comments, please comment below.</h3>
-          <textarea id="feedback"></textarea>
+          <textarea id="addtional_comments"></textarea>
         </div>
 
         <button id="submit-feedback">Submit feedback</button>
+
+        <script src="js/thankyou.js"></script>
     </body>
 </html>

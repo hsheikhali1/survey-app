@@ -270,6 +270,19 @@ app.post("/post-results", async function (request, response) {
   return response.send(data);
 });
 
+app.post('/post-feedback', async function (request, response) {
+
+  const { error, data } = await db.from("qualitative_results").insert({ ...request.body });
+
+  if (error) {
+    response.status(400);
+    console.log(error);
+    return response.send({ error, status: 400 });
+  }
+
+  return response.send(data);
+})
+
 app.get('/get-results', async function (request, response) {
   return response.send(await db.from("survey_prod").select());
 });
