@@ -45,6 +45,8 @@ submit.addEventListener('click', (e) => {
       graph_preference: preference,
       justification: justification.value,
       additional_comments: addtionalComments.value
+    }).then(() => {
+      submit.setAttribute('disabled')
     })
   } else {
     console.error('Please select a graph preference and provide a justification')
