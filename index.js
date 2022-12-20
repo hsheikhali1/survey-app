@@ -192,12 +192,32 @@ app.get("/3d-graph", (_, response) => {
   const questions = [
     {
       id: "question1",
-      question: "What percentage of cold drinks consumed in Autumn",
+      question: "What percentage of females were enrolled onto medicine?",
     },
     {
       id: "question2",
       question:
-        "What was the precentage increase of hot drinks consumed from summer to winter",
+        "What is the percentage difference between females who studied engineering compared to females who studied veterinary sciences?",
+    },
+    {
+      id: "question3",
+      question:
+        "There are 300 people on the management course. How many of them are female?",
+    },
+    {
+      id: "question4",
+      question:
+        "According to the graph, which course is the most popular amongst females?",
+    },
+    {
+      id: "question5",
+      question:
+        "This question is an attention check. Please type the word ‘yellow’ below.",
+    },
+    {
+      id: "question6",
+      question:
+        "What is the percentage difference between the most popular and least popular course for females?",
     },
   ];
   const listOfGraphs = [
