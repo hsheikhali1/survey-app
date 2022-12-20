@@ -28,24 +28,26 @@ async function submitFields (fields) {
   }
 }
 
-submit.addEventListener("click", (e) => {
+submit.addEventListener('click', (e) => {
   e.preventDefault()
-  let preference = "";
+  let preference = ''
+
   if (twoDCheckbox.checked) {
-    preference = "2d"
+    preference = '2d'
   } else if (threeDCheckbox.checked) {
-    preference = "3d"
+    preference = '3d'
   }
 
-  if (twoDCheckbox.checked || threeDCheckbox.checked) {
+  if ((twoDCheckbox.checked || threeDCheckbox.checked) && justification.value !== '') {
+    console.log(justification.value, addtionalComments.value)
     // add logic to push to database
     submitFields({
       name: localStorage.getItem('username'),
       graph_preference: preference,
-      justification: justification.value,
-      additional_comments: addtionalComments.valie
+      justification,
+      additional_comments: addtionalComments
     })
   } else {
-    console.error('Please select a graph preference')
+    console.error('Please select a graph preference and provide a justification')
   }
 })
