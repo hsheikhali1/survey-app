@@ -15,13 +15,33 @@
            padding: 1rem;
            border: none;
          }
+
+         .feedback-questions {
+           display: flex;
+           flex-direction: column;
+         }
         </style>
     </head>
     <body>
         <h1>Thank you for participating in this survey!</h1>
-        <p>If you have any feedback you'd like to give, please commend down below</p>
 
-        <textarea id="feedback"></textarea>
+        <div class="feedback-questions">
+          <h3>Which graph did you find easier to read and why?</h3>
+          <div>
+            <label>2D Graph</label>
+            <input type="radio" />
+            <label>3D Graph</label>
+            <input type="radio" />
+          </div>
+
+          <textarea id="feedback"></textarea>
+        </div>
+
+        <div>
+          <h3>If you have any other thoughts or comments, please comment below.</h3>
+          <textarea id="feedback"></textarea>
+        </div>
+
         <button id="submit-feedback">Submit feedback</button>
     </body>
 </html>

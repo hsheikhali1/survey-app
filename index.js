@@ -1,8 +1,7 @@
 const express = require('express')
-const { createClient } = require("@supabase/supabase-js");
-const uuid = require("uuid");
+const { createClient } = require('@supabase/supabase-js')
 
-require("dotenv").config();
+require('dotenv').config()
 
 const logger = require("./logger");
 
@@ -112,33 +111,33 @@ app.get("/2d-graph", (_, response) => {
   const questions = [
     {
       id: "question1",
-      question: "What percentage of females were enrolled onto medicine?",
+      question: "What percentage of females were enrolled onto medicine",
     },
     {
       id: "question2",
       question:
-        "What is the percentage difference between females who studied engineering compared to females who studied veterinary sciences?",
+        "What is the percentage difference between females who studied engineering compared to females who studied veterinary sciences",
     },
     {
       id: "question3",
       question:
-        "There are 300 people on the management course. How many of them are female?",
+        "There are 300 people on the management course. How many of them are female",
     },
     {
       id: "question4",
       question:
-        "According to the graph, which course is the most popular amongst females?",
+        "According to the graph, which course is the most popular amongst females",
     },
     {
       id: "question5",
       question:
-        "This question is an attention check. Please type the word ‘yellow’ below.",
+        "This question is an attention check. Please type the word ‘yellow’ below",
     },
     {
       id: "question6",
       question:
-        "What is the percentage difference between the most popular and least popular course for females?",
-    },
+        "What is the percentage difference between the most popular and least popular course for females",
+    }
   ];
   const listOfGraphs = [
     {

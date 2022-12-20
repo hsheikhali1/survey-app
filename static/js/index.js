@@ -1,6 +1,7 @@
 // get input field
 const usernameInput = document.querySelector('#user-name')
 const submitUsername = document.querySelector('#submit-details')
+const consent = document.querySelector('#consent')
 
 // error field
 const errorSpan = document.querySelector('#error-display')
@@ -41,5 +42,13 @@ submitUsername.addEventListener('click', () => {
   }
 
   setField('username', usernameInput.value)
-  window.location.href = '/2d-graph'
+
+  if (consent.checked) {
+    window.location.href = '/2d-graph'
+  } else {
+    errorSpan.innerText = 'In order to continue with the survey you must consent to the consent statement'
+    errorSpan.classList.remove('hidden')
+    errorSpan.classList.add('block')
+    errorSpan.classList.add('text-red-300')
+  }
 })
