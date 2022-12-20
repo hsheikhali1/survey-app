@@ -271,13 +271,13 @@ app.post("/post-results", async function (request, response) {
   return response.send(data);
 });
 
-app.get("/get-results", async function (request, response) {
+app.get('/get-results', async function (request, response) {
   return response.send(await db.from("survey_prod").select());
 });
 
 app.listen(process.env.PORT, () => {
   console.log(
     "we're off to the races!",
-    "We are live on http://localhost:3000/"
-  );
-});
+    'We are live on http://localhost:3000/'
+  )
+})
