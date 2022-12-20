@@ -260,7 +260,7 @@ app.get("/silvia", function (_, response) {
 
 app.post("/post-results", async function (request, response) {
   // connect to database
-  const { error, data } = await db.from("survey").insert({ ...request.body });
+  const { error, data } = await db.from("survey_prod").insert({ ...request.body });
 
   if (error) {
     response.status(400);
