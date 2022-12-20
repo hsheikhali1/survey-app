@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express')
 const { createClient } = require("@supabase/supabase-js");
 const uuid = require("uuid");
 
@@ -17,7 +17,10 @@ app.use(express.json());
 
 const supabaseKey = process.env.SUPABASE_KEY;
 
-const db = createClient("https://vaqjvzpyoyveukinynym.supabase.co", supabaseKey);
+const db = createClient(
+  "https://vaqjvzpyoyveukinynym.supabase.co",
+  supabaseKey
+);
 
 // write a function that randomly generates or reads an image
 // then displays that image to the browser
@@ -109,12 +112,32 @@ app.get("/2d-graph", (_, response) => {
   const questions = [
     {
       id: "question1",
-      question: "What percentage of cold drinks consumed in Autumn",
+      question: "What percentage of females were enrolled onto medicine?",
     },
     {
       id: "question2",
       question:
-        "What was the precentage increase of hot drinks consumed from summer to winter",
+        "What is the percentage difference between females who studied engineering compared to females who studied veterinary sciences?",
+    },
+    {
+      id: "question3",
+      question:
+        "There are 300 people on the management course. How many of them are female?",
+    },
+    {
+      id: "question4",
+      question:
+        "According to the graph, which course is the most popular amongst females?",
+    },
+    {
+      id: "question5",
+      question:
+        "This question is an attention check. Please type the word ‘yellow’ below.",
+    },
+    {
+      id: "question6",
+      question:
+        "What is the percentage difference between the most popular and least popular course for females?",
     },
   ];
   const listOfGraphs = [
@@ -202,9 +225,9 @@ app.get("/3d-graph", (_, response) => {
   });
 });
 
-app.get('/thank-you', (request, response) => {
-  response.render('thank-you')
-})
+app.get("/thank-you", (request, response) => {
+  response.render("thank-you");
+});
 
 app.get("/health", (_, response) => {
   logger.debug("running the logger");
@@ -217,19 +240,19 @@ app.get("/silvia", function (_, response) {
 
 app.post("/post-results", async function (request, response) {
   // connect to database
-  const { error, data } = await db.from('survey').insert({ ...request.body });
+  const { error, data } = await db.from("survey").insert({ ...request.body });
 
   if (error) {
     response.status(400);
-    console.log(error)
+    console.log(error);
     return response.send({ error, status: 400 });
   }
 
   return response.send(data);
 });
 
-app.get("/get-results", async function(request, response) {
-  return response.send(await db.from('survey').select());
+app.get("/get-results", async function (request, response) {
+  return response.send(await db.from("survey").select());
 });
 
 app.listen(process.env.PORT, () => {

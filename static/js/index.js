@@ -1,11 +1,11 @@
 // get input field
-const usernameInput = document.querySelector("#user-name");
-const submitUsername = document.querySelector("#submit-username");
+const usernameInput = document.querySelector('#user-name')
+const submitUsername = document.querySelector('#submit-details')
 
 // error field
-const errorSpan = document.querySelector("#error-display");
+const errorSpan = document.querySelector('#error-display')
 
-const errors = [];
+const errors = []
 
 /**
  * Set value to local storage
@@ -13,34 +13,33 @@ const errors = [];
  * @param value {string} Value to set for key in local storage
  * @returns {void} returns void
  */
-function setField(key, value) {
-  localStorage.setItem(key, value);
+function setField (key, value) {
+  localStorage.setItem(key, value)
 }
 
-function getField(key) {
-  return localStorage.getItem(key);
+function getField (key) {
+  return localStorage.getItem(key)
 }
 
+submitUsername.addEventListener('click', () => {
+  if (usernameInput.value === '' || !usernameInput) {
+    errors.push({ error: 'err-missing-username', message: 'Missing username, please provide a valid username before proceeding to the next page.' })
+    console.error('Please provide a username before you can moving forward.')
 
-submitUsername.addEventListener("click", () => {
-  if (usernameInput.value === "" || !usernameInput) {
-    errors.push({ error: "err-missing-username", message: "Missing username, please provide a valid username before proceeding to the next page." })
-    console.error("Please provide a username before you can moving forward.");
+    errorSpan.innerText = errors[0].message
+    errorSpan.classList.remove('hidden')
+    errorSpan.classList.add('block')
+    errorSpan.classList.add('text-red-300')
 
-    errorSpan.innerText = errors[0].message;
-    errorSpan.classList.remove("hidden");
-    errorSpan.classList.add("block");
-    errorSpan.classList.add("text-red-300");
-
-    return;
+    return
   }
 
-  if (getField("username") !== "" || getField("username") !== undefined) {
+  if (getField('username') !== '' || getField('username') !== undefined) {
     // replace the username
-    localStorage.clear();
-    setField("username", usernameInput.value);
+    localStorage.clear()
+    setField('username', usernameInput.value)
   }
 
-  setField("username", usernameInput.value);
-  window.location.href = "/2d-graph";
-});
+  setField('username', usernameInput.value)
+  window.location.href = '/2d-graph'
+})

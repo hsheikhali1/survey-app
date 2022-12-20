@@ -36,6 +36,10 @@
 			 margin-bottom: 1rem;
 		 }
 
+     .mb-2 {
+       margin-bottom: 1.25rem;
+     }
+     
 		 .flex {
 			 display: flex;
 		 }
@@ -62,40 +66,56 @@
 		 .text-red-300 {
 			 color: red;
 		 }
+
+     .text-center {
+       text-align: center;
+     }
 		</style>
 
 
-		<!--
-			1. Add a meaningful heading
-			2. Explain the purpose of this experiment
-			3. Instructions
-		-->
 		<div class="container">
 			<div class="flex flex-col justify-center">
 				<!-- Add a heading -->
-				<h2>Comparing the Effectivness of 2D and 3D Bar Charts</h2>
-				<!-- Add a meaningful explanation -->
-				<h4>How does this survay work?</h4>
-				<p>
-					You will be shown a random bar chart from a selection of multiple different 2D and 3D bar graphs.
-					You will be asked to answer a mathematical question relating to this graph. Please answer the question according to
-					you graph to the best of your ability. The purpose of this study is to test your speed and accuracy.
-				</p>
+				<h2 class="text-center">Data Visualisation: 2D vs 3D Bar Charts</h2>
+        <h3 class="text-center">Information Sheet and Participant Consent Form for Research Participants</h3>
+        <br />
+        <p>You have been invited to take part in this research study. Before you proceed with this survey, please read all of the following information carefully to understand the purpose of this research and what it entails.</p>
 
-				<h4>How to submit your answers</h4>
-				<p>Look at the graph below and answer the following questions. Once you are confident with your answer, please press
-					submit.</p>
+        <span>
+          <h4>What is the purpose of this survey?</h4>
+          <p>This survey is the final phase of a Masters Degree in Data Science at Manchester Metropolitan University. The aim of this survey is to compare the effectiveness of 2D and 3D bar charts to create a solution to a real life Data Science problem. This will ultimately provide more research within the data visualisation field regarding any claims surrounding the practicality of reading from a specific type of graph.</p>
+        </span>
 
-				<p>Before you begin please make sure to create a unique id and enter this below. This should be the first two letters
-					of your first name, your year of birth, and the last two letters of your last name.</p>
-				<p>Eg. if your name is John Smith and you were born in 1995, your unique id would be jo1995th</p>
+        <span>
+          <h4>What will I have to do?</h4>
+          <p>You will be shown a 2D and a 3D bar chart from a random selection of graphs. You will be required to answer five different questions based on the content of these graphs. Please make sure that you are paying full attention throughout the duration of this survey, failure to do so could result in a loss of compensation. Please complete this survey in a quiet room with minimal distractions. Make sure you read the consent statement carefully and provide a unique ID according to the format given at the bottom of this page, alongside your signature and the date.</p>
+        </span>
 
-				<input id="user-name" placeholder="please provide your username" />
+        <span>
+          <h4>Ethics</h4>
+          <p>Your participation in this study will be kept confidential. All responses will remain anonymous and there will be no means to personally identify anyone who completes this survey. This survey follows all guidance from the Equality Act 2010 and is open to anyone from any age, disability, sex, gender, race, religion, belief and sexual orientation.</p>
+        </span>
+
+        <span>
+          <h4>Consent Statement</h4>
+          <p>I give my full informed consent to take part in this research. I understand that I am free to withdraw from this study at any given point without reason. I am aware that my identity will always be protected, even during the publication of any findings. I understand that my data will be collected, processed, and analysed with accordance to the Data Protection Act 2018 and Manchester Metropolitan University’s Data Protection Policy.</p>
+          <div class="flex mb-2">
+            <label>Pleases check the box if you concent  </label>
+            <input type="checkbox" />
+          </div>
+        </span>
+
+
+        <label>Unique ID:
+          <em>(Note: Your unique ID should be the first two letters of your first name, your year of birth and the last two letters of your last name, eg. if your name is John Smith and you were born in 1995, your unique ID would be jo1995th.)</em>
+        </label>
+
+				<input id="user-name" placeholder="please provide your unique id" />
 				<span id="error-display" class="hidden"></span>
-				<button id="submit-username">Submit</button>
+
+				<button id="submit-details">Submit</button>
 			</div>
 		</div>
-
 		<script src="js/index.js"></script>
     </body>
 </html>
