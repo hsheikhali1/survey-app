@@ -3,39 +3,25 @@ const { createClient } = require('@supabase/supabase-js')
 
 require('dotenv').config()
 
-const logger = require("./logger");
+const logger = require('./logger')
 
-const app = express();
+const app = express()
 
-app.set("view engine", "ejs");
-app.set("views", "./views");
-app.set("static", "./static");
-app.use(express.static("pictures"));
-app.use(express.static("static"));
-app.use(express.json());
+app.set('view engine', 'ejs')
+app.set('views', './views')
+app.set('static', './static')
+app.use(express.static('pictures'))
+app.use(express.static('static'))
+app.use(express.json())
 
-const supabaseKey = process.env.SUPABASE_KEY;
+const supabaseKey = process.env.SUPABASE_KEY
 
 const db = createClient(
-  "https://vaqjvzpyoyveukinynym.supabase.co",
+  'https://vaqjvzpyoyveukinynym.supabase.co',
   supabaseKey
-);
+)
 
-// write a function that randomly generates or reads an image
-// then displays that image to the browser
-const randomlyDisplayImage = () => {
-  // declare the image variable
-  let image;
-
-  // get all the images from your directory
-
-  // using javascript, randomly select a graph
-
-  // return the image
-  return image;
-};
-
-app.get("/", function (request, response) {
+app.get('/', function (_, response) {
   // example logic for randomly selecting from a list
   /*
    */
@@ -240,52 +226,47 @@ app.get("/3d-graph", (_, response) => {
       questions: listOfGraphs[randomGraph].questions,
       typeOfGraph: listOfGraphs[randomGraph].typeOfGraph,
       graphId: listOfGraphs[randomGraph].graphId,
-    },
-  });
-});
-
-app.get("/thank-you", (request, response) => {
-  response.render("thank-you");
-});
-
-app.get("/health", (_, response) => {
-  logger.debug("running the logger");
-  return response.send({ message: "alive", status: 200 });
-});
-
-app.get("/silvia", function (_, response) {
-  return response.send("Hello Silvia!");
-});
-
-app.post("/post-results", async function (request, response) {
-  // connect to database
-  const { error, data } = await db.from("survey_prod").insert({ ...request.body });
-
-  if (error) {
-    response.status(400);
-    console.log(error);
-    return response.send({ error, status: 400 });
-  }
-
-  return response.send(data);
-});
-
-app.post('/post-feedback', async function (request, response) {
-
-  const { error, data } = await db.from("qualitative_results").insert({ ...request.body });
-
-  if (error) {
-    response.status(400);
-    console.log(error);
-    return response.send({ error, status: 400 });
-  }
-
-  return response.send(data);
+    }
+  })
 })
 
-app.get('/get-results', async function (request, response) {
-  return response.send(await db.from("survey_prod").select());
-});
+app.get('/thank-you', (_, response) => {
+  response.render('thank-you')
+})
+
+app.get("/health", (_, response) => {
+  logger.debug("running the logger")
+  return response.send({ message: "alive", status: 200 })
+})
+
+app.post('/post-results', async function (request, response) {
+  // connect to database
+  const { error, data } = await db.from('survey_prod').insert({ ...request.body })
+
+  if (error) {
+    response.status(400)
+    console.log(error)
+    return response.send({ error, status: 400 })
+  }
+
+  return response.send(data)
+})
+
+app.post('/post-feedback', async function (request, response) {
+  const { error, data } = await db.from('qualitative_results').insert({ ...request.body })
+
+  if (error) {
+    response.status(400)
+    console.log(error)
+    return response.send({ error, status: 400 })
+  }
+
+  return response.send(data)
+})
+
+app.get('/get-results', async function (_, response) {
+  return response.send(await db.from('survey_prod').select())
+})
 
 app.listen(process.env.PORT, () => {
   console.log(

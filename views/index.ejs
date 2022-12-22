@@ -73,6 +73,87 @@
      .text-center {
        text-align: center;
      }
+
+      /* Customize the label (the container) */
+      .checkmark-container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      /* Hide the browser's default checkbox */
+      .checkmark-container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      /* Create a custom checkbox */
+      .checkmark {
+        position: absolute;
+        top: -4px;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        margin-left: 0.5rem;
+      }
+
+      /* On mouse-over, add a grey background color */
+      .checkmark-container:hover input ~ .checkmark {
+        background-color: #ccc;
+      }
+
+      /* When the checkbox is checked, add a blue background */
+      .checkmark-container input:checked ~ .checkmark {
+        background-color: #2196F3;
+      }
+
+      /* Create the checkmark/indicator (hidden when not checked) */
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      /* Show the checkmark when checked */
+      .checkmark-container input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      /* Style the checkmark/indicator */
+      .checkmark-container .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+
+      .items-center {
+        align-items: center;
+      }
+
+      .text-bold {
+        font-weight: 600;
+      }
+
+      .text-lg {
+        font-size: 1.5rem;
+      }
 		</style>
 
 
@@ -102,9 +183,12 @@
         <span>
           <h4>Consent Statement</h4>
           <p>I give my full informed consent to take part in this research. I understand that I am free to withdraw from this study at any given point without reason. I am aware that my identity will always be protected, even during the publication of any findings. I understand that my data will be collected, processed, and analysed with accordance to the Data Protection Act 2018 and Manchester Metropolitan University’s Data Protection Policy.</p>
-          <div class="flex mb-2">
-            <label>Please check the box if you consent  </label>
-            <input id="consent" type="checkbox" />
+          <div class="flex items-center mb-2">
+            <p class="font-bold text-lg">Please check the box if you consent</p>
+            <label class="checkmark-container">
+              <input id="consent" type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
           </div>
         </span>
 
