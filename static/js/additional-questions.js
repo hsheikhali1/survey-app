@@ -64,7 +64,6 @@ submit.addEventListener('click', (e) => {
       education_level: education.options[education.selectedIndex].text,
       graph_view_frequency: howOftenSelected
     }).then(() => {
-      submit.setAttribute('disabled')
       window.location.href = '/completion'
     })
   } else {
