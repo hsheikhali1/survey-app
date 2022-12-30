@@ -1,12 +1,9 @@
 // get input field
-const usernameInput = document.querySelector('#user-name')
 const submitUsername = document.querySelector('#submit-details')
 const consent = document.querySelector('#consent')
 
 // error field
 const errorSpan = document.querySelector('#error-display')
-
-const errors = []
 
 /**
  * Set value to local storage
@@ -22,26 +19,32 @@ function getField (key) {
   return localStorage.getItem(key)
 }
 
-submitUsername.addEventListener('click', () => {
-  if (usernameInput.value === '' || !usernameInput) {
-    errors.push({ error: 'err-missing-username', message: 'Missing username, please provide a valid username before proceeding to the next page.' })
-    console.error('Please provide a username before you can moving forward.')
+function randomlyGenerateId (length) {
+  const array = new Uint32Array(2)
+  window.crypto.getRandomValues(array)
+  let result = ''
+  let str = ''
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const charactersLength = characters.length
 
-    errorSpan.innerText = errors[0].message
-    errorSpan.classList.remove('hidden')
-    errorSpan.classList.add('block')
-    errorSpan.classList.add('text-red-300')
-
-    return
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
   }
 
+  for (let i = 0; i < array.length; i++) {
+    str += (i < 2 || i > 5 ? '' : '-') + array[i].toString(4).slice(-1)
+  }
+  return result + str
+}
+
+submitUsername.addEventListener('click', () => {
   if (getField('username') !== '' || getField('username') !== undefined) {
     // replace the username
     localStorage.clear()
-    setField('username', usernameInput.value)
+    setField('username', randomlyGenerateId(5))
   }
 
-  setField('username', usernameInput.value)
+  setField('username', randomlyGenerateId(5))
 
   if (consent.checked) {
     window.location.href = '/2d-graph'

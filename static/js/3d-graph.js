@@ -43,6 +43,6 @@ submitButton.addEventListener('click', (e) => {
     dataSet = { ...dataSet, [question.id]: question.value }
   })
   submitFields(dataSet).then(() => {
-    window.location.href = '/thank-you'
+    window.location.href = '/additional-questions'
   })
 })

@@ -16,7 +16,7 @@
       }
 
       input {
-        padding: 1rem;
+        padding: 0.50rem;
       }
       img {
         width: 70%;
@@ -25,11 +25,25 @@
      span {
        font-size: 1.3rem;
      }
+
+      #proceed {
+
+			 border: none;
+			 padding: 1rem;
+			 border-radius: 3px;
+			 max-width: 30%;
+			 cursor: pointer;
+      }
+
+     #proceed:hover {
+       background-color: #A9A9A9;
+     }
     </style>
 
   </head>
   <body>
     <div>
+      <span>Page 2 of 5</span>
       <h1>2D Bar Chart</h1>
       <span id="username">You are completing this survey as:</span>
     </div>
@@ -44,7 +58,7 @@
         <% } %>
       </div>
 
-      <button id="proceed">Proceed to the next set of graphs</button>
+      <button id="proceed">Next</button>
     </div>
 
     <script src="js/2d-graph.js"></script>

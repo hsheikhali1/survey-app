@@ -3,6 +3,21 @@ const threeDCheckbox = document.querySelector('#checkbox-3d')
 const submit = document.querySelector('#submit-feedback')
 const justification = document.querySelector('#justification')
 const addtionalComments = document.querySelector('#additional_comments')
+const howOftenQuestions = document.querySelectorAll('.questions > input')
+const education = document.querySelector('#education')
+const age = document.querySelector('#age')
+
+let howOftenSelected
+
+console.log(education.options[education.selectedIndex])
+
+howOftenQuestions.forEach((question) => {
+  question.addEventListener('click', (e) => {
+    const element = e.target
+
+    howOftenSelected = element.value
+  })
+})
 
 threeDCheckbox.addEventListener('click', () => {
   threeDCheckbox.checked = true
@@ -44,11 +59,16 @@ submit.addEventListener('click', (e) => {
       name: localStorage.getItem('username'),
       graph_preference: preference,
       justification: justification.value,
-      additional_comments: addtionalComments.value
+      additional_comments: addtionalComments.value,
+      age: age.value,
+      education_level: education.options[education.selectedIndex].text,
+      graph_view_frequency: howOftenSelected
     }).then(() => {
       submit.setAttribute('disabled')
+      window.location.href = '/completion'
     })
   } else {
+    window.location.href = '/completion'
     console.error('Please select a graph preference and provide a justification')
   }
 })

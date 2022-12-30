@@ -22,73 +22,8 @@ const db = createClient(
 )
 
 app.get('/', function (_, response) {
-  // example logic for randomly selecting from a list
-  /*
-   */
-  const questions = [
-    {
-      id: "question1",
-      question: "What percentage of cold drinks consumed in Autumn",
-    },
-    {
-      id: "question2",
-      question:
-        "What was the precentage increase of hot drinks consumed from summer to winter",
-    },
-  ];
-  const listOfGraphs = [
-    {
-      graph: "graph1.png",
-      questions,
-      typeOfGraph: "2D",
-      graphId: "graph1",
-    },
-    {
-      graph: "graph2.png",
-      questions,
-      typeOfGraph: "2D",
-      graphId: "graph2",
-    },
-    {
-      graph: "graph3.png",
-      questions,
-      typeOfGraph: "2D",
-      graphId: "graph3",
-    },
-    {
-      graph: "graph4.png",
-      questions,
-      typeOfGraph: "2D",
-      graphId: "graph4",
-    },
-    {
-      graph: "graph5.png",
-      questions,
-      typeOfGraph: "2D",
-      graphId: "graph5",
-    },
-    { graph: "graph6.png", questions, typeOfGraph: "2D", graphId: "graph6" },
-    { graph: "graph7.png", questions, typeOfGraph: "2D", graphId: "graph7" },
-    { graph: "graph8.png", questions, typeOfGraph: "2D", graphId: "graph8" },
-    { graph: "graph9.png", questions, typeOfGraph: "2D", graphId: "graph9" },
-    {
-      graph: "graph10.png",
-      questions,
-      typeOfGraph: "2D",
-      graphId: "graph10",
-    },
-  ];
-  const randomGraph = Math.floor(Math.random() * listOfGraphs.length);
-
-  response.render("index", {
-    graphs: {
-      graph: listOfGraphs[randomGraph].graph,
-      questions: listOfGraphs[randomGraph].questions,
-      typeOfGraph: listOfGraphs[randomGraph].typeOfGraph,
-      graphId: listOfGraphs[randomGraph].graphId,
-    },
-  });
-});
+  response.render('index')
+})
 
 app.get("/2d-graph", (_, response) => {
   // example logic for randomly selecting from a list
@@ -102,7 +37,7 @@ app.get("/2d-graph", (_, response) => {
     {
       id: "question2",
       question:
-        "What is the percentage difference between females who studied engineering compared to females who studied veterinary sciences",
+        "What is the difference between females who studied engineering compared to females who studied veterinary sciences",
     },
     {
       id: "question3",
@@ -165,37 +100,34 @@ app.get("/2d-graph", (_, response) => {
       graph: listOfGraphs[randomGraph].graph,
       questions: listOfGraphs[randomGraph].questions,
       typeOfGraph: listOfGraphs[randomGraph].typeOfGraph,
-      graphId: listOfGraphs[randomGraph].graphId,
-    },
-  });
-});
+      graphId: listOfGraphs[randomGraph].graphId
+    }
+  })
+})
 
-app.get("/3d-graph", (_, response) => {
-  // example logic for randomly selecting from a list
-  /*
-   */
+app.get('/3d-graph', (_, response) => {
   const questions = [
     {
-      id: "question1",
-      question: "What percentage of females were enrolled onto medicine?",
+      id: 'question1',
+      question: 'What percentage of females were enrolled onto medicine?',
     },
     {
-      id: "question2",
+      id: 'question2',
       question:
-        "What is the percentage difference between females who studied engineering compared to females who studied veterinary sciences?",
+        'What is the difference between females who studied engineering compared to females who studied veterinary sciences?'
     },
     {
-      id: "question3",
+      id: 'question3',
       question:
-        "There are 300 people on the management course. How many of them are female?",
+        'There are 300 people on the management course. How many of them are female?'
     },
     {
-      id: "question4",
+      id: 'question4',
       question:
-        "According to the graph, which course is the most popular amongst females?",
+        'According to the graph, which course is the most popular amongst females?'
     },
     {
-      id: "question5",
+      id: 'question5',
       question:
         "This question is an attention check. Please type the word ‘yellow’ below.",
     },
@@ -230,8 +162,12 @@ app.get("/3d-graph", (_, response) => {
   })
 })
 
-app.get('/thank-you', (_, response) => {
-  response.render('thank-you')
+app.get('/completion', (_, response) => {
+  response.render('completion')
+})
+
+app.get('/additional-questions', (_, response) => {
+  response.render('additional-questions')
 })
 
 app.get("/health", (_, response) => {
