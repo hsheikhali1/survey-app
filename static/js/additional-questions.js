@@ -67,7 +67,6 @@ submit.addEventListener('click', (e) => {
       window.location.href = '/completion'
     })
   } else {
-    window.location.href = '/completion'
     console.error('Please select a graph preference and provide a justification')
   }
 })
